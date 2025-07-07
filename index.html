@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UK2Africa Exports - Professional Vehicle & Equipment Shipping</title>
+    <title>UK2Africa Exports - Premium Vehicle & Equipment Shipping</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -14,1036 +16,982 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+
+        /* Glassmorphism styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
-        
-        .text-shadow {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-        
-        .card-shadow {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .border-gradient {
-            border: 2px solid transparent;
-            background: linear-gradient(white, white) padding-box, linear-gradient(135deg, #f59e0b, #ef4444) border-box;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .stats-counter {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #1e40af;
-        }
-        
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-        
-        .testimonial-card {
-            background: #f8fafc;
-            border-left: 4px solid #3b82f6;
-            padding: 2rem;
-            margin: 1rem 0;
-        }
-        
-        .process-step {
-            background: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            border: 3px solid #3b82f6;
-            font-weight: bold;
-            color: #3b82f6;
-            font-size: 1.5rem;
-        }
-        
-        .contact-info {
-            background: #1e40af;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            margin: 0.5rem 0;
-        }
-        
-        .pricing-card {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .pricing-card:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-        }
-        
-        .feature-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .feature-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .cta-button {
-            background: linear-gradient(135deg, #f59e0b, #ef4444);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
-            color: white;
-        }
-        
-        .section-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-            margin: 3rem 0;
-        }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, #fef3c7, #fed7aa);
-            border: 1px solid #f59e0b;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-        }
-        
-        .brand-colors {
-            color: #1e40af;
-        }
-        
-        .brand-secondary {
-            color: #f59e0b;
-        }
-        
-        .text-contrast {
-            color: #1f2937;
-        }
-        
-        .bg-contrast {
-            background-color: #f9fafb;
-        }
-        
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+
+        /* Particle background */
+        #particles {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #e5e7eb;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
-        
-        .content-wrapper {
-            margin-top: 80px;
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
         }
-        
-        .hero-section {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* 3D Card effects */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(15deg) rotateX(15deg) scale(1.05);
+        }
+
+        /* Animated gradient text */
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Pulse animation */
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(79, 172, 254, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(79, 172, 254, 0.8), 0 0 60px rgba(79, 172, 254, 0.6); }
+        }
+
+        /* Interactive button styles */
+        .btn-premium {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
             color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .destinations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        
-        .destination-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .destination-card:hover {
-            background: #f0f9ff;
-            border-color: #3b82f6;
-        }
-        
-        .form-group {
-            margin: 1rem 0;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        
-        .form-select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 6px;
-            font-size: 1rem;
-            background: white;
+            font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .form-textarea {
+
+        .btn-premium:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 6px;
-            font-size: 1rem;
-            resize: vertical;
-            min-height: 120px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
         }
-        
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
+
+        .btn-premium:hover:before {
+            left: 100%;
         }
-        
-        .three-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.5);
         }
-        
+
+        /* Vehicle card hover effects */
+        .vehicle-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        /* Progress bars */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border-radius: 4px;
+            animation: progress-animation 2s ease-out;
+        }
+
+        @keyframes progress-animation {
+            from { width: 0%; }
+            to { width: var(--progress-width); }
+        }
+
+        /* Floating elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+        }
+
+        /* Tracking status indicators */
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .status-indicator.active {
+            background: #4facfe;
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-indicator.completed {
+            background: #4ecdc4;
+        }
+
+        .status-indicator.pending {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 172, 254, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(79, 172, 254, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 172, 254, 0); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(79, 172, 254, 0.8);
+            border-radius: 4px;
+        }
+
+        /* Navigation styles */
+        nav {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Section spacing for PDF */
+        .section {
+            min-height: auto;
+            padding: 60px 0;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .two-column,
-            .three-column {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-counter {
-                font-size: 2rem;
-            }
-            
-            .hero-section {
-                padding: 2rem 0;
-            }
-        }
-        
-        .print-friendly {
-            background: white !important;
-            color: #000 !important;
-        }
-        
-        @media print {
-            .navbar {
-                position: static;
-            }
-            
-            .content-wrapper {
-                margin-top: 0;
-            }
-            
-            * {
-                background: white !important;
-                color: #000 !important;
+            .card-3d:hover {
+                transform: scale(1.05);
             }
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
+    <!-- Particle Background -->
+    <div id="particles"></div>
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <h1 class="text-xl font-bold brand-colors">UK2Africa Exports</h1>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#services" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
-                        <a href="#process" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Process</a>
-                        <a href="#destinations" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Destinations</a>
-                        <a href="#contact" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <span class="text-sm font-medium text-gray-700">
-                        <i class="fas fa-phone mr-1"></i> +44 7878 204115
-                    </span>
-                </div>
+    <nav class="fixed top-0 w-full z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-white font-bold text-2xl">
+                <i class="fas fa-ship mr-2 text-blue-400"></i>
+                UK2<span class="gradient-text">Africa</span> Exports
             </div>
+            <div class="hidden md:flex space-x-8 text-white">
+                <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
+                <a href="#services" class="hover:text-blue-400 transition-colors">Services</a>
+                <a href="#vehicles" class="hover:text-blue-400 transition-colors">Vehicles</a>
+                <a href="#tracking" class="hover:text-blue-400 transition-colors">Tracking</a>
+                <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+            <button class="btn-premium md:block hidden">Get Quote</button>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="content-wrapper">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h1 class="text-4xl md:text-6xl font-bold text-shadow mb-6">
-                        Ship Your Vehicles & Equipment<br>
-                        <span class="text-yellow-400">from UK to Africa</span>
-                    </h1>
-                    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-200">
-                        Professional door-to-door shipping service for trucks, machinery, and agricultural equipment. 
-                        Trusted by 500+ customers across 25+ African countries.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="#quote" class="cta-button">
-                            <i class="fas fa-calculator mr-2"></i>
-                            Get Free Quote
-                        </a>
-                        <a href="#services" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
-                            <i class="fas fa-info-circle mr-2"></i>
-                            Learn More
-                        </a>
-                    </div>
+    <!-- Hero Section -->
+    <section id="home" class="section min-h-screen flex items-center justify-center relative">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="glass p-12 floating">
+                <h1 class="text-6xl md:text-8xl font-bold text-white mb-6">
+                    Ship Your <span class="gradient-text">Vehicles</span> & Equipment
+                </h1>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">
+                    from <span class="text-blue-400">UK</span> to <span class="text-green-400">Africa</span>
+                </h2>
+                <p class="text-xl text-white opacity-90 mb-8 max-w-3xl mx-auto">
+                    Professional door-to-door shipping service for trucks, machinery, and agricultural equipment. 
+                    Trusted by 500+ customers across 25+ African countries.
+                </p>
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-12">
+                    <button class="btn-premium text-lg px-8 py-4">
+                        <i class="fas fa-calculator mr-2"></i>Get Free Quote
+                    </button>
+                    <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-gray-800 transition-all">
+                        <i class="fas fa-play mr-2"></i>Learn More
+                    </button>
                 </div>
                 
                 <!-- Stats -->
-                <div class="stats-grid mt-16">
-                    <div class="text-center">
-                        <div class="stats-counter text-yellow-400">500+</div>
-                        <p class="text-gray-200 font-medium">Vehicles Shipped</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="glass-dark p-6">
+                        <div class="text-4xl font-bold text-blue-400 mb-2">500+</div>
+                        <div class="text-white">Vehicles Shipped</div>
                     </div>
-                    <div class="text-center">
-                        <div class="stats-counter text-yellow-400">25+</div>
-                        <p class="text-gray-200 font-medium">African Countries</p>
+                    <div class="glass-dark p-6">
+                        <div class="text-4xl font-bold text-green-400 mb-2">25+</div>
+                        <div class="text-white">African Countries</div>
                     </div>
-                    <div class="text-center">
-                        <div class="stats-counter text-yellow-400">98%</div>
-                        <p class="text-gray-200 font-medium">Customer Satisfaction</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="stats-counter text-yellow-400">10+</div>
-                        <p class="text-gray-200 font-medium">Years Experience</p>
+                    <div class="glass-dark p-6">
+                        <div class="text-4xl font-bold text-yellow-400 mb-2">98%</div>
+                        <div class="text-white">Customer Satisfaction</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Company Overview -->
-        <section class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Welcome to UK2Africa Exports</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Your trusted link between the UK and Africa for vehicle and equipment shipping
+    <!-- Services Section -->
+    <section id="services" class="section py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-white mb-6">Our <span class="gradient-text">Premium</span> Services</h2>
+                <p class="text-xl text-white opacity-90 max-w-3xl mx-auto">
+                    Comprehensive shipping solutions tailored for the UK-Africa trade corridor
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Vehicle Export -->
+                <div class="glass p-8 card-3d vehicle-card">
+                    <div class="text-5xl text-blue-400 mb-6">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Vehicle Export</h3>
+                    <p class="text-white opacity-80 mb-6">
+                        Commercial trucks, vans, buses, and private vehicles from trusted UK dealers
                     </p>
+                    <div class="progress-bar mb-4">
+                        <div class="progress-fill" style="--progress-width: 95%"></div>
+                    </div>
+                    <div class="text-sm text-white opacity-70">95% Success Rate</div>
                 </div>
-                
-                <div class="two-column">
+
+                <!-- Heavy Machinery -->
+                <div class="glass p-8 card-3d vehicle-card">
+                    <div class="text-5xl text-yellow-400 mb-6">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Heavy Machinery</h3>
+                    <p class="text-white opacity-80 mb-6">
+                        Excavators, bulldozers, cranes, and loaders for construction projects
+                    </p>
+                    <div class="progress-bar mb-4">
+                        <div class="progress-fill" style="--progress-width: 92%"></div>
+                    </div>
+                    <div class="text-sm text-white opacity-70">92% Success Rate</div>
+                </div>
+
+                <!-- Agricultural Equipment -->
+                <div class="glass p-8 card-3d vehicle-card">
+                    <div class="text-5xl text-green-400 mb-6">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Agricultural Equipment</h3>
+                    <p class="text-white opacity-80 mb-6">
+                        Tractors, harvesters, and irrigation systems for modern farming
+                    </p>
+                    <div class="progress-bar mb-4">
+                        <div class="progress-fill" style="--progress-width: 89%"></div>
+                    </div>
+                    <div class="text-sm text-white opacity-70">89% Success Rate</div>
+                </div>
+
+                <!-- Logistics Support -->
+                <div class="glass p-8 card-3d vehicle-card">
+                    <div class="text-5xl text-purple-400 mb-6">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Logistics Support</h3>
+                    <p class="text-white opacity-80 mb-6">
+                        End-to-end logistics, documentation, and customs clearance
+                    </p>
+                    <div class="progress-bar mb-4">
+                        <div class="progress-fill" style="--progress-width: 97%"></div>
+                    </div>
+                    <div class="text-sm text-white opacity-70">97% Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicle Gallery -->
+    <section id="vehicles" class="section py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-white mb-6">Premium <span class="gradient-text">Vehicle</span> Gallery</h2>
+                <p class="text-xl text-white opacity-90">Explore our extensive inventory of quality vehicles and equipment</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Vehicle 1 -->
+                <div class="glass vehicle-card overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-600 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-truck text-6xl text-white opacity-50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm">Available</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Mercedes Actros 2545</h3>
+                        <p class="text-white opacity-80 mb-4">Heavy-duty truck perfect for long-distance transport</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-400">£45,000</span>
+                            <button class="btn-premium text-sm px-4 py-2">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle 2 -->
+                <div class="glass vehicle-card overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-blue-600 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-tractor text-6xl text-white opacity-50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm">Reserved</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">John Deere 6120R</h3>
+                        <p class="text-white opacity-80 mb-4">Advanced agricultural tractor with modern features</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-400">£85,000</span>
+                            <button class="btn-premium text-sm px-4 py-2">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle 3 -->
+                <div class="glass vehicle-card overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-yellow-500 to-red-600 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-cog text-6xl text-white opacity-50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm">Available</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">CAT 320 Excavator</h3>
+                        <p class="text-white opacity-80 mb-4">Heavy construction excavator for mining operations</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-yellow-400">£120,000</span>
+                            <button class="btn-premium text-sm px-4 py-2">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Tracking System -->
+    <section id="tracking" class="section py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-white mb-6">Advanced <span class="gradient-text">Tracking</span> System</h2>
+                <p class="text-xl text-white opacity-90">Real-time tracking and updates for your shipments</p>
+            </div>
+
+            <div class="glass p-8 mb-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div>
-                        <h3 class="text-2xl font-bold brand-colors mb-4">Our Mission</h3>
-                        <p class="text-gray-700 mb-6">
-                            At UK2Africa Exports, we make it easy to send parcels, freight, and vehicles from the UK to 
-                            destinations across Africa. Whether you're sending personal goods to loved ones, shipping bulk 
-                            freight for your business, or purchasing a vehicle for export — we provide a seamless, secure, 
-                            and affordable service from start to finish.
-                        </p>
-                        <p class="text-gray-700 mb-6">
-                            With reliable door-to-door collections, expert packaging, transparent pricing, and timely deliveries, 
-                            we're committed to making cross-border shipping simple and stress-free.
-                        </p>
+                        <h3 class="text-2xl font-bold text-white mb-6">Track Your Shipment</h3>
+                        <div class="space-y-4 mb-8">
+                            <input type="text" placeholder="Enter Tracking Number" class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60">
+                            <button class="btn-premium w-full">
+                                <i class="fas fa-search mr-2"></i>Track Shipment
+                            </button>
+                        </div>
+
+                        <!-- Sample Tracking Info -->
+                        <div class="glass-dark p-6">
+                            <h4 class="text-lg font-bold text-white mb-4">Shipment UK2AFR-2024-001</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="status-indicator completed"></div>
+                                    <div class="text-white">
+                                        <div class="font-semibold">Vehicle Collected</div>
+                                        <div class="text-sm opacity-70">London, UK - Dec 15, 2024</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="status-indicator completed"></div>
+                                    <div class="text-white">
+                                        <div class="font-semibold">Customs Cleared</div>
+                                        <div class="text-sm opacity-70">Portsmouth, UK - Dec 16, 2024</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="status-indicator active"></div>
+                                    <div class="text-white">
+                                        <div class="font-semibold">In Transit</div>
+                                        <div class="text-sm opacity-70">Mediterranean Sea - Dec 18, 2024</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="status-indicator pending"></div>
+                                    <div class="text-white opacity-50">
+                                        <div class="font-semibold">Arrived at Destination</div>
+                                        <div class="text-sm">Estimated: Dec 25, 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div>
-                        <h3 class="text-2xl font-bold brand-colors mb-4">Why Choose Us?</h3>
-                        <ul class="feature-list text-gray-700">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Experienced & Trustworthy team</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Transparency First - No hidden fees</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>End-to-End Solutions</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Africa-Focused expertise</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Comprehensive insurance coverage</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Real-time tracking system</li>
-                        </ul>
+                        <h3 class="text-2xl font-bold text-white mb-6">Live Dashboard</h3>
+                        <div class="space-y-6">
+                            <div class="glass-dark p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-white">Shipments in Transit</span>
+                                    <span class="text-2xl font-bold text-blue-400">24</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="--progress-width: 75%"></div>
+                                </div>
+                            </div>
+
+                            <div class="glass-dark p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-white">Delivered This Month</span>
+                                    <span class="text-2xl font-bold text-green-400">42</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="--progress-width: 85%"></div>
+                                </div>
+                            </div>
+
+                            <div class="glass-dark p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-white">Processing Orders</span>
+                                    <span class="text-2xl font-bold text-yellow-400">8</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="--progress-width: 40%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Chart placeholder -->
+                            <div class="glass-dark p-4" style="height: 300px;">
+                                <canvas id="trackingChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services Section -->
-        <section id="services" class="py-16 bg-contrast">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-contrast mb-4">Our Services</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Comprehensive shipping solutions for all your UK to Africa needs
+    <!-- About Section -->
+    <section id="about" class="section py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-5xl font-bold text-white mb-6">About <span class="gradient-text">UK2Africa</span> Exports</h2>
+                    <p class="text-xl text-white opacity-90 mb-8">
+                        We are your trusted link between the UK and Africa, specializing in the seamless export of vehicles, 
+                        heavy machinery, and agricultural equipment. Founded with a mission to make trade easier, safer, and more accessible.
                     </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                            <div class="text-white">
+                                <div class="font-semibold">Quality Assured</div>
+                                <div class="opacity-70">Every vehicle inspected and tested before shipment</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <div class="text-white">
+                                <div class="font-semibold">Fully Insured</div>
+                                <div class="opacity-70">Comprehensive insurance coverage for peace of mind</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-clock text-white"></i>
+                            </div>
+                            <div class="text-white">
+                                <div class="font-semibold">On-Time Delivery</div>
+                                <div class="opacity-70">98% of shipments delivered on or before schedule</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="services-grid">
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover-scale">
-                        <div class="service-icon">
-                            <i class="fas fa-truck text-white text-3xl"></i>
+
+                <div class="glass p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">Company Information</h3>
+                    <div class="space-y-4 text-white">
+                        <div class="flex justify-between">
+                            <span class="opacity-70">Company Name:</span>
+                            <span class="font-semibold">UK2AFRICA EXPORTS LTD</span>
                         </div>
-                        <h3 class="text-xl font-bold text-center mb-4 brand-colors">Vehicle Export Solutions</h3>
-                        <p class="text-gray-600 text-center mb-4">
-                            We source, inspect, and export commercial trucks, vans, buses, and private vehicles from 
-                            trusted UK dealers to buyers across Africa.
-                        </p>
-                        <ul class="text-sm text-gray-600 space-y-2">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Quality inspection before purchase</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>All vehicle types supported</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Trusted UK dealer network</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Complete documentation</li>
-                        </ul>
+                        <div class="flex justify-between">
+                            <span class="opacity-70">Registration:</span>
+                            <span class="font-semibold">16419628</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="opacity-70">Incorporated:</span>
+                            <span class="font-semibold">April 2024</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="opacity-70">Status:</span>
+                            <span class="font-semibold text-green-400">Active</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="opacity-70">Location:</span>
+                            <span class="font-semibold">London, UK</span>
+                        </div>
                     </div>
-                    
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover-scale">
-                        <div class="service-icon">
-                            <i class="fas fa-hard-hat text-white text-3xl"></i>
+
+                    <div class="mt-8 pt-6 border-t border-white/20">
+                        <h4 class="text-lg font-bold text-white mb-4">Certifications</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <i class="fas fa-certificate text-2xl text-yellow-400 mb-2"></i>
+                                <div class="text-sm text-white">ISO 9001</div>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-shield-alt text-2xl text-blue-400 mb-2"></i>
+                                <div class="text-sm text-white">Customs Broker</div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-center mb-4 brand-colors">Heavy Machinery Shipping</h3>
-                        <p class="text-gray-600 text-center mb-4">
-                            From excavators and bulldozers to cranes and loaders, we export construction and 
-                            industrial equipment to support development projects.
-                        </p>
-                        <ul class="text-sm text-gray-600 space-y-2">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Mining equipment specialists</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Construction machinery</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Industrial equipment</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Specialized handling</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover-scale">
-                        <div class="service-icon">
-                            <i class="fas fa-seedling text-white text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center mb-4 brand-colors">Agricultural Equipment</h3>
-                        <p class="text-gray-600 text-center mb-4">
-                            We help African farmers and agri-entrepreneurs access essential tools like tractors, 
-                            harvesters, and irrigation systems.
-                        </p>
-                        <ul class="text-sm text-gray-600 space-y-2">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Tractors and harvesters</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Irrigation systems</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Farm implements</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Productivity focused</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover-scale">
-                        <div class="service-icon">
-                            <i class="fas fa-shipping-fast text-white text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center mb-4 brand-colors">Freight & Logistics</h3>
-                        <p class="text-gray-600 text-center mb-4">
-                            We offer secure, efficient, and fully managed freight services from the UK to Africa, 
-                            including door-to-door pickup and customs support.
-                        </p>
-                        <ul class="text-sm text-gray-600 space-y-2">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Door-to-door collection</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Export documentation</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Customs clearance</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Secure packaging</li>
-                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Process Section -->
-        <section id="process" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Simple, transparent process from inquiry to delivery
+    <!-- Testimonials -->
+    <section id="testimonials" class="section py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-white mb-6">What Our <span class="gradient-text">Customers</span> Say</h2>
+                <p class="text-xl text-white opacity-90">Real feedback from satisfied customers across Africa</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 card-3d">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">KM</span>
+                        </div>
+                        <div>
+                            <div class="text-white font-bold">Kofi Mensah</div>
+                            <div class="text-white opacity-70">Ghana</div>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-white opacity-90">
+                        "UK2Africa Exports delivered our construction equipment exactly as promised. 
+                        Professional service from start to finish!"
                     </p>
                 </div>
-                
-                <div class="process-grid">
-                    <div class="text-center">
-                        <div class="process-step">1</div>
-                        <h3 class="text-xl font-bold mb-3 brand-colors">Get Quote</h3>
-                        <p class="text-gray-600">
-                            Contact us with your shipping requirements. We'll provide a transparent quote with no hidden fees.
-                        </p>
+
+                <div class="glass p-8 card-3d">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">AM</span>
+                        </div>
+                        <div>
+                            <div class="text-white font-bold">Amara Musa</div>
+                            <div class="text-white opacity-70">Nigeria</div>
+                        </div>
                     </div>
-                    
-                    <div class="text-center">
-                        <div class="process-step">2</div>
-                        <h3 class="text-xl font-bold mb-3 brand-colors">Vehicle Sourcing</h3>
-                        <p class="text-gray-600">
-                            We source and inspect your vehicle or equipment from trusted UK suppliers and dealers.
-                        </p>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
                     </div>
-                    
-                    <div class="text-center">
-                        <div class="process-step">3</div>
-                        <h3 class="text-xl font-bold mb-3 brand-colors">Documentation</h3>
-                        <p class="text-gray-600">
-                            We handle all export documentation, customs paperwork, and shipping arrangements.
-                        </p>
+                    <p class="text-white opacity-90">
+                        "Excellent tracking system and communication. My farming equipment 
+                        arrived in perfect condition. Highly recommended!"
+                    </p>
+                </div>
+
+                <div class="glass p-8 card-3d">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">DM</span>
+                        </div>
+                        <div>
+                            <div class="text-white font-bold">David Mwangi</div>
+                            <div class="text-white opacity-70">Kenya</div>
+                        </div>
                     </div>
-                    
-                    <div class="text-center">
-                        <div class="process-step">4</div>
-                        <h3 class="text-xl font-bold mb-3 brand-colors">Shipping</h3>
-                        <p class="text-gray-600">
-                            Your vehicle is securely shipped via RoRo or container to your chosen African destination.
-                        </p>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
                     </div>
-                    
-                    <div class="text-center">
-                        <div class="process-step">5</div>
-                        <h3 class="text-xl font-bold mb-3 brand-colors">Delivery</h3>
-                        <p class="text-gray-600">
-                            We coordinate delivery to your doorstep or arrange collection from the destination port.
-                        </p>
+                    <p class="text-white opacity-90">
+                        "Transparent pricing with no hidden fees. The best shipping company 
+                        for UK to Africa vehicle exports!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-white mb-6">Get In <span class="gradient-text">Touch</span></h2>
+                <p class="text-xl text-white opacity-90">Ready to start your shipping journey? Contact us today!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="glass p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">Send Us a Message</h3>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name" class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60">
+                            <input type="text" placeholder="Last Name" class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60">
+                        </div>
+                        <input type="email" placeholder="Email Address" class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60">
+                        <input type="tel" placeholder="Phone Number" class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60">
+                        <select class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white">
+                            <option value="">Select Service</option>
+                            <option value="vehicle">Vehicle Export</option>
+                            <option value="machinery">Heavy Machinery</option>
+                            <option value="agricultural">Agricultural Equipment</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <textarea rows="4" placeholder="Your Message" class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60"></textarea>
+                        <button type="submit" class="btn-premium w-full">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="glass p-8">
+                        <h3 class="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div class="text-white">
+                                    <div class="font-semibold">Phone</div>
+                                    <div class="opacity-70">+44 7878 204115</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div class="text-white">
+                                    <div class="font-semibold">Email</div>
+                                    <div class="opacity-70">info@uk2africaexports.com</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div class="text-white">
+                                    <div class="font-semibold">Address</div>
+                                    <div class="opacity-70">128 City Road, London, EC1V 2NX</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-clock text-white"></i>
+                                </div>
+                                <div class="text-white">
+                                    <div class="font-semibold">Business Hours</div>
+                                    <div class="opacity-70">Mon-Fri: 9AM-6PM GMT</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="text-center">
-                        <div class="process-step">6</div>
-                        <h3 class="text-xl font-bold mb-3 brand-colors">Support</h3>
-                        <p class="text-gray-600">
-                            Ongoing support and after-sales service to ensure your complete satisfaction.
-                        </p>
+
+                    <div class="glass p-8">
+                        <h3 class="text-xl font-bold text-white mb-4">Quick Quote Calculator</h3>
+                        <div class="space-y-4">
+                            <select class="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white">
+                                <option value="">Vehicle Type</option>
+                                <option value="car">Car</option>
+                                <option value="truck">Truck</option>
+                                <option value="machinery">Heavy Machinery</option>
+                            </select>
+                            <select class="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white">
+                                <option value="">Destination</option>
+                                <option value="ghana">Ghana</option>
+                                <option value="nigeria">Nigeria</option>
+                                <option value="kenya">Kenya</option>
+                                <option value="south-africa">South Africa</option>
+                            </select>
+                            <button class="btn-premium w-full">
+                                <i class="fas fa-calculator mr-2"></i>Get Instant Quote
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Destinations Section -->
-        <section id="destinations" class="py-16 bg-contrast">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-contrast mb-4">We Ship to 25+ African Countries</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Comprehensive coverage across the African continent
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-white font-bold text-2xl mb-4">
+                        <i class="fas fa-ship mr-2 text-blue-400"></i>
+                        UK2<span class="gradient-text">Africa</span> Exports
+                    </div>
+                    <p class="text-white opacity-70 mb-4">
+                        Your trusted partner for UK to Africa vehicle and equipment shipping.
                     </p>
+                    <div class="flex space-x-4">
+                        <i class="fab fa-facebook text-2xl text-blue-400 hover:text-blue-300 cursor-pointer"></i>
+                        <i class="fab fa-twitter text-2xl text-blue-400 hover:text-blue-300 cursor-pointer"></i>
+                        <i class="fab fa-linkedin text-2xl text-blue-400 hover:text-blue-300 cursor-pointer"></i>
+                        <i class="fab fa-instagram text-2xl text-blue-400 hover:text-blue-300 cursor-pointer"></i>
+                    </div>
                 </div>
                 
-                <div class="destinations-grid">
-                    <div class="destination-card">
-                        <h4 class="font-bold brand-colors mb-2">Southern Africa</h4>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>South Africa</li>
-                            <li>Zimbabwe</li>
-                            <li>Botswana</li>
-                            <li>Namibia</li>
-                            <li>Zambia</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="destination-card">
-                        <h4 class="font-bold brand-colors mb-2">East Africa</h4>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>Kenya</li>
-                            <li>Tanzania</li>
-                            <li>Uganda</li>
-                            <li>Rwanda</li>
-                            <li>Ethiopia</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="destination-card">
-                        <h4 class="font-bold brand-colors mb-2">West Africa</h4>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>Ghana</li>
-                            <li>Nigeria</li>
-                            <li>Senegal</li>
-                            <li>Ivory Coast</li>
-                            <li>Mali</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="destination-card">
-                        <h4 class="font-bold brand-colors mb-2">Central Africa</h4>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>Cameroon</li>
-                            <li>Angola</li>
-                            <li>Congo</li>
-                            <li>Gabon</li>
-                            <li>Chad</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="destination-card">
-                        <h4 class="font-bold brand-colors mb-2">North Africa</h4>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>Egypt</li>
-                            <li>Morocco</li>
-                            <li>Algeria</li>
-                            <li>Tunisia</li>
-                            <li>Libya</li>
-                        </ul>
-                    </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-white opacity-70">
+                        <li><a href="#" class="hover:opacity-100">Vehicle Export</a></li>
+                        <li><a href="#" class="hover:opacity-100">Heavy Machinery</a></li>
+                        <li><a href="#" class="hover:opacity-100">Agricultural Equipment</a></li>
+                        <li><a href="#" class="hover:opacity-100">Logistics Support</a></li>
+                    </ul>
                 </div>
-            </div>
-        </section>
 
-        <!-- Pricing Section -->
-        <section class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Transparent Pricing</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        No hidden fees, no surprises - just honest, competitive pricing
-                    </p>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Destinations</h4>
+                    <ul class="space-y-2 text-white opacity-70">
+                        <li><a href="#" class="hover:opacity-100">Ghana</a></li>
+                        <li><a href="#" class="hover:opacity-100">Nigeria</a></li>
+                        <li><a href="#" class="hover:opacity-100">Kenya</a></li>
+                        <li><a href="#" class="hover:opacity-100">South Africa</a></li>
+                    </ul>
                 </div>
-                
-                <div class="three-column">
-                    <div class="pricing-card">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-car text-4xl brand-colors mb-4"></i>
-                            <h3 class="text-2xl font-bold mb-2">Standard Vehicles</h3>
-                            <p class="text-gray-600">Cars, SUVs, Small Vans</p>
-                        </div>
-                        <div class="text-center mb-6">
-                            <div class="text-3xl font-bold brand-colors">£1,400</div>
-                            <div class="text-gray-600">Starting from</div>
-                        </div>
-                        <ul class="text-sm text-gray-600 space-y-2 mb-6">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>RoRo Shipping</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Basic Insurance</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Port to Port</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Documentation</li>
-                        </ul>
-                        <a href="#quote" class="cta-button w-full text-center">Get Quote</a>
-                    </div>
-                    
-                    <div class="pricing-card border-gradient">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-truck text-4xl brand-colors mb-4"></i>
-                            <h3 class="text-2xl font-bold mb-2">Commercial Vehicles</h3>
-                            <p class="text-gray-600">Trucks, Buses, Heavy Vans</p>
-                        </div>
-                        <div class="text-center mb-6">
-                            <div class="text-3xl font-bold brand-colors">£2,500</div>
-                            <div class="text-gray-600">Starting from</div>
-                        </div>
-                        <ul class="text-sm text-gray-600 space-y-2 mb-6">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Container or RoRo</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Comprehensive Insurance</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Door to Door Available</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Full Documentation</li>
-                        </ul>
-                        <a href="#quote" class="cta-button w-full text-center">Get Quote</a>
-                    </div>
-                    
-                    <div class="pricing-card">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-hard-hat text-4xl brand-colors mb-4"></i>
-                            <h3 class="text-2xl font-bold mb-2">Heavy Machinery</h3>
-                            <p class="text-gray-600">Construction, Mining, Agricultural</p>
-                        </div>
-                        <div class="text-center mb-6">
-                            <div class="text-3xl font-bold brand-colors">£4,000</div>
-                            <div class="text-gray-600">Starting from</div>
-                        </div>
-                        <ul class="text-sm text-gray-600 space-y-2 mb-6">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Specialized Container</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Premium Insurance</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Door to Door</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Expert Handling</li>
-                        </ul>
-                        <a href="#quote" class="cta-button w-full text-center">Get Quote</a>
-                    </div>
-                </div>
-                
-                <div class="highlight-box mt-8">
-                    <h3 class="text-xl font-bold mb-4 brand-colors">
-                        <i class="fas fa-shield-alt mr-2"></i>Our Pricing Promise
-                    </h3>
-                    <ul class="text-gray-700 space-y-2">
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>No hidden fees or surprise charges</li>
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>All-inclusive pricing with transparent breakdown</li>
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Price match guarantee on comparable services</li>
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Fixed quotes valid for 30 days</li>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-white opacity-70">
+                        <li><a href="#" class="hover:opacity-100">Track Shipment</a></li>
+                        <li><a href="#" class="hover:opacity-100">Get Quote</a></li>
+                        <li><a href="#" class="hover:opacity-100">Contact Us</a></li>
+                        <li><a href="#" class="hover:opacity-100">About Us</a></li>
                     </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- Testimonials Section -->
-        <section class="py-16 bg-contrast">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-contrast mb-4">What Our Customers Say</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Real feedback from satisfied customers across Africa
-                    </p>
-                </div>
-                
-                <div class="two-column">
-                    <div class="testimonial-card">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                                K
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-900">Kofi Mensah</h4>
-                                <p class="text-gray-600">Logistics Manager, Ghana</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic">
-                            "UK to Africa Exporters ensured our machinery arrived on time and in perfect condition, exceeding all expectations. Their professionalism and attention to detail is outstanding."
-                        </p>
-                        <div class="mt-3">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                                A
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-900">Amara Okafor</h4>
-                                <p class="text-gray-600">Business Owner, Nigeria</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic">
-                            "Excellent service from start to finish. The team was transparent about costs and kept me informed throughout the entire shipping process. Highly recommended!"
-                        </p>
-                        <div class="mt-3">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="two-column">
-                    <div class="testimonial-card">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                                T
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-900">Themba Nkomo</h4>
-                                <p class="text-gray-600">Farmer, Zimbabwe</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic">
-                            "Getting our agricultural equipment shipped was seamless. The team understood our needs and delivered exactly what was promised. Great value for money."
-                        </p>
-                        <div class="mt-3">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                                F
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-900">Fatima Al-Rashid</h4>
-                                <p class="text-gray-600">Construction Company, Egypt</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic">
-                            "Professional, reliable, and cost-effective. UK2Africa Exports made our heavy machinery import process incredibly smooth. Will definitely use again."
-                        </p>
-                        <div class="mt-3">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                        </div>
-                    </div>
-                </div>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-white opacity-70">
+                <p>&copy; 2024 UK2Africa Exports Ltd. All rights reserved. | Company Registration: 16419628</p>
             </div>
-        </section>
+        </div>
+    </footer>
 
-        <!-- Quote Form Section -->
-        <section id="quote" class="py-16 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Get Your Free Quote</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Complete the form below and we'll provide you with a detailed quote within 24 hours
-                    </p>
-                </div>
-                
-                <div class="bg-gray-50 rounded-lg p-8 shadow-lg">
-                    <form class="space-y-6">
-                        <div class="two-column">
-                            <div class="form-group">
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Full Name *</label>
-                                <input type="text" class="form-input" placeholder="Enter your full name" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Email Address *</label>
-                                <input type="email" class="form-input" placeholder="Enter your email" required>
-                            </div>
-                        </div>
-                        
-                        <div class="two-column">
-                            <div class="form-group">
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Phone Number *</label>
-                                <input type="tel" class="form-input" placeholder="Enter your phone number" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Country/Location *</label>
-                                <input type="text" class="form-input" placeholder="Enter your location" required>
-                            </div>
-                        </div>
-                        
-                        <div class="two-column">
-                            <div class="form-group">
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Service Type *</label>
-                                <select class="form-select" required>
-                                    <option value="">Select service type</option>
-                                    <option value="vehicle">Vehicle Export</option>
-                                    <option value="machinery">Heavy Machinery</option>
-                                    <option value="agricultural">Agricultural Equipment</option>
-                                    <option value="freight">Freight & Logistics</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Destination Country *</label>
-                                <select class="form-select" required>
-                                    <option value="">Select destination</option>
-                                    <option value="south-africa">South Africa</option>
-                                    <option value="ghana">Ghana</option>
-                                    <option value="nigeria">Nigeria</option>
-                                    <option value="kenya">Kenya</option>
-                                    <option value="zimbabwe">Zimbabwe</option>
-                                    <option value="other">Other African Country</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Vehicle/Equipment Details *</label>
-                            <textarea class="form-textarea" placeholder="Please provide details about what you want to ship (make, model, year, condition, etc.)" required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Additional Requirements</label>
-                            <textarea class="form-textarea" placeholder="Any special requirements or additional information"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="flex items-center">
-                                <input type="checkbox" class="mr-2" required>
-                                <span class="text-sm text-gray-700">I agree to the terms and conditions and privacy policy</span>
-                            </label>
-                        </div>
-                        
-                        <div class="text-center">
-                            <button type="submit" class="cta-button">
-                                <i class="fas fa-paper-plane mr-2"></i>
-                                Get My Free Quote
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
+    <script>
+        // Particle animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-contrast">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-contrast mb-4">Get in Touch</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Ready to start your export journey? We're here to help with any questions.
-                    </p>
-                </div>
-                
-                <div class="three-column">
-                    <div class="contact-info">
-                        <i class="fas fa-phone text-2xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Call Us</h3>
-                        <p class="text-lg">+44 7878 204115</p>
-                        <p class="text-sm opacity-80">Monday - Friday: 9AM - 6PM</p>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <i class="fas fa-envelope text-2xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Email Us</h3>
-                        <p class="text-lg">info@uk2africaexports.com</p>
-                        <p class="text-sm opacity-80">We respond within 24 hours</p>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <i class="fas fa-map-marker-alt text-2xl mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Visit Us</h3>
-                        <p class="text-lg">128 City Road</p>
-                        <p class="text-lg">London, EC1V 2NX</p>
-                        <p class="text-sm opacity-80">United Kingdom</p>
-                    </div>
-                </div>
-                
-                <div class="section-divider"></div>
-                
-                <div class="text-center">
-                    <h3 class="text-2xl font-bold text-contrast mb-4">Company Information</h3>
-                    <div class="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-2">Legal Entity</h4>
-                                <p class="text-gray-600">UK2AFRICA EXPORTS LTD</p>
-                                <p class="text-gray-600">Company Registration: 16419628</p>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-2">Incorporated</h4>
-                                <p class="text-gray-600">30 April 2025</p>
-                                <p class="text-gray-600">Status: Active</p>
-                            </div>
-                        </div>
-                        <div class="mt-6 pt-6 border-t">
-                            <h4 class="font-bold text-gray-900 mb-2">Business Activities</h4>
-                            <ul class="text-gray-600 space-y-1">
-                                <li>• Sale of used cars and light motor vehicles</li>
-                                <li>• Sale of other motor vehicles</li>
-                                <li>• Retail trade of motor vehicle parts and accessories</li>
-                                <li>• Sea and coastal freight water transport</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 6 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
 
-        <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">UK2Africa Exports</h3>
-                        <p class="text-gray-300 mb-4">
-                            Your trusted partner in UK to Africa shipping and logistics solutions.
-                        </p>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-300 hover:text-white">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="text-gray-300 hover:text-white">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="text-gray-300 hover:text-white">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="#" class="text-gray-300 hover:text-white">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Services</h4>
-                        <ul class="space-y-2 text-gray-300">
-                            <li><a href="#" class="hover:text-white">Vehicle Export</a></li>
-                            <li><a href="#" class="hover:text-white">Heavy Machinery</a></li>
-                            <li><a href="#" class="hover:text-white">Agricultural Equipment</a></li>
-                            <li><a href="#" class="hover:text-white">Freight & Logistics</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Destinations</h4>
-                        <ul class="space-y-2 text-gray-300">
-                            <li><a href="#" class="hover:text-white">South Africa</a></li>
-                            <li><a href="#" class="hover:text-white">Ghana</a></li>
-                            <li><a href="#" class="hover:text-white">Nigeria</a></li>
-                            <li><a href="#" class="hover:text-white">Kenya</a></li>
-                            <li><a href="#" class="hover:text-white">View All Countries</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
-                        <ul class="space-y-2 text-gray-300">
-                            <li><i class="fas fa-phone mr-2"></i>+44 7878 204115</li>
-                            <li><i class="fas fa-envelope mr-2"></i>info@uk2africaexports.com</li>
-                            <li><i class="fas fa-map-marker-alt mr-2"></i>128 City Road, London, EC1V 2NX</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-300">
-                    <p>&copy; 2025 UK2Africa Exports Ltd. All rights reserved. | Company Registration: 16419628</p>
-                </div>
-            </div>
-        </footer>
-    </div>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize Chart.js for tracking section
+        function initTrackingChart() {
+            const ctx = document.getElementById('trackingChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Shipments',
+                            data: [12, 19, 15, 25, 22, 30],
+                            borderColor: '#4facfe',
+                            backgroundColor: 'rgba(79, 172, 254, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: 'white'
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            setTimeout(initTrackingChart, 1000); // Delay to ensure canvas is ready
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0, 0, 0, 0.8)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Interactive button effects
+        document.querySelectorAll('.btn-premium').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+        });
+
+        // Quick quote calculator
+        document.querySelector('.glass button[class*="calculator"]').addEventListener('click', function() {
+            const vehicleType = this.parentElement.querySelector('select').value;
+            const destination = this.parentElement.querySelectorAll('select')[1].value;
+            
+            if (vehicleType && destination) {
+                alert(`Estimated quote for ${vehicleType} to ${destination}: £2,500 - £4,500\n\nContact us for a detailed quote!`);
+            } else {
+                alert('Please select both vehicle type and destination for a quote.');
+            }
+        });
+    </script>
 </body>
 </html>
